@@ -53,10 +53,10 @@ set -u
 
 # DeNovoGear
 if [ ! -e $SETUP_DIR/denovogear.success ]; then
-  curl -L --retry 10 -o dist.tar.gz https://downloads.sourceforge.net/project/denovogear/Executables/Linux_64_x86/denovogear-${VER_DENOVOGEAR}-Linux-x86_64.tar.gz
+  curl -L --retry 10 -o dist.tar.bz2 https://github.com/ultimatesource/denovogear/releases/download/v1.1.1/denovogear-v${VER_DENOVOGEAR}-Linux-x86_64.tar.bz2
   mkdir denovogear
-  tar --strip-components 1 -C denovogear -xzf dist.tar.gz
-  mv  denovogear/bin/denovogear $INST_PATH/bin/denovogear
-  rm -rf dist.tar.gz denovogear*
+  tar --strip-components 1 -C denovogear -xjf dist.tar.bz2
+  mv  denovogear $INST_PATH/denovogear
+  rm -rf dist.tar.bz2
   touch $SETUP_DIR/denovogear.success
 fi
