@@ -53,10 +53,15 @@ set -u
 
 # DeNovoGear
 if [ ! -e $SETUP_DIR/denovogear.success ]; then
-  curl -L --retry 10 -o dist.tar.bz2 https://github.com/ultimatesource/denovogear/releases/download/v1.1.1/denovogear-v${VER_DENOVOGEAR}-Linux-x86_64.tar.bz2
-  mkdir denovogear
-  tar --strip-components 1 -C denovogear -xjf dist.tar.bz2
-  mv  denovogear $INST_PATH/denovogear
-  rm -rf dist.tar.bz2
+  mkdir $INST_PATH/denovogear
+  git clone https://github.com/ultimatesource/denovogear.git
+  cd denovogear
+  git checkout $VER_DENOVOGEAR
+  cd build 
+  cmake  -DBUILD_EXTERNAL_PROJECTS=1 -DCMAKE_INSTALL_PREFIX=$INST_PATH/denovogear -DCMAKE_BUILD_TYPE=Release ..
+  make -j4
+  make install
+  cd $SETUP_DIR
+  rm -rf denovogear
   touch $SETUP_DIR/denovogear.success
 fi
