@@ -8,7 +8,7 @@ ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
 # ALL tool versions used by opt-build.sh
-ENV VER_DENOVOGEAR="0.5.4"
+ENV VER_DENOVOGEAR="1.1.1"
 
 RUN apt-get -yq update
 RUN apt-get install -yq \
@@ -24,7 +24,7 @@ RUN bash build/opt-build.sh $OPT
 FROM ubuntu:18.04
 
 LABEL maintainer="vo1@sanger.ac.uk" \
-      version="0.5.4" \
+      version="1.1.1" \
       description="DeNovoGear container"
 
 MAINTAINER  Victoria Offord <vo1@sanger.ac.uk>
@@ -32,7 +32,7 @@ MAINTAINER  Victoria Offord <vo1@sanger.ac.uk>
 RUN apt-get -yq update
 
 ENV OPT /opt/wsi-t113
-ENV PATH $OPT/bin:$OPT/python3/bin:$PATH
+ENV PATH $OPT/bin:$OPT/python3/bin:$OPT/denovogear/bin:$OPT/denovogear/libexec/denovogear:$PATH
 ENV LD_LIBRARY_PATH $OPT/lib
 ENV PYTHONPATH $OPT/python3:$OPT/python3/lib/python3.6/site-packages
 ENV LC_ALL C
