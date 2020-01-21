@@ -14,6 +14,6 @@ script:
  - docker build -t denovogear .
  - docker images | grep -c denovogear
  - echo 'Verify program(s) from this repo'
- - docker run -t --rm denovogear denovogear -h
+ - docker run -t --rm denovogear denovogear
 
 
