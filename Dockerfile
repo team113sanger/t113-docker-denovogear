@@ -42,6 +42,11 @@ MAINTAINER  Victoria Offord <vo1@sanger.ac.uk>
 
 RUN apt-get -yq update
 
+RUN apt-get install -yq \
+zlib1g-dev \
+libboost-all-dev \
+libeigen3-dev 
+
 ENV OPT /opt/wsi-t113
 ENV PATH $OPT/bin:$OPT/python3/bin:$OPT/denovogear/bin:$PATH
 ENV LD_LIBRARY_PATH $OPT/lib
